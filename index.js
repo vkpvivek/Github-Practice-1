@@ -40,13 +40,29 @@ myForm.addEventListener('submit', onSubmit);
 
 function onSubmit(e) {
     e.preventDefault();
-    
+
     if(nameInput.value === '' || emailInput.value === '') {
       msg.innerHTML = 'Please enter all fields';
 
     } else {
-        localStorage.setItem(nameInput.value,emailInput.value);
-        console.log("value update at local storage");
+
+        let myObj={
+            name:nameInput.value,
+            email:emailInput.value
+        };
+        
+        // console.log(myObj);
+        let myObj_serialized=JSON.stringify(myObj);   //convert obj into string
+        console.log(myObj_serialized);
+
+        localStorage.setItem("myObj",myObj_serialized);
+        console.log(localStorage);
+
+        //let myObj_deserialized=JSON.parse(localStorage.getItem("myObj"));
+        // console.log(myObj_deserialized);
+        
+        // localStorage.setItem(nameInput.value,emailInput.value);
+        // console.log("value update at local storage");
         // console.log(nameInput.value)
         // console.log(emailInput.value)
     }
