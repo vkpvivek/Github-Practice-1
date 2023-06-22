@@ -51,13 +51,17 @@ function onSubmit(e) {
             email:emailInput.value
         };
         
-        // console.log(myObj);
-        let myObj_serialized=JSON.stringify(myObj);   //convert obj into string
-        console.log(myObj_serialized);
+        localStorage.setItem(myObj.email,JSON.stringify(myObj));
+        //showUser(myObj);
+       
+    }  
 
-        localStorage.setItem("myObj",myObj_serialized);
-        console.log(localStorage);
+        // let myObj_serialized=JSON.stringify(myObj);   //convert obj into string
+        // console.log(myObj_serialized);
 
+        // localStorage.setItem("myObj",myObj_serialized);
+        // console.log(localStorage);
+ 
         //let myObj_deserialized=JSON.parse(localStorage.getItem("myObj"));
         // console.log(myObj_deserialized);
         
@@ -65,6 +69,14 @@ function onSubmit(e) {
         // console.log("value update at local storage");
         // console.log(nameInput.value)
         // console.log(emailInput.value)
+    //}
+
+    function showUser(obj){
+        const parElem=document.getElementsByClassName('items');
+        const childElem=document.createElement('li');
+
+        childElem.textContent=obj.name +" "+obj.email;
+        console.log(childElem);
     }
 };
 
