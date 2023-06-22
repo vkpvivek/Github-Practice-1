@@ -12,22 +12,22 @@
 
 
 //______  ____Task 1
-const btn=document.querySelector('.btn')
+// const btn=document.querySelector('.btn')
 
-btn.addEventListener('click', (e)=>{
-    e.preventDefault();
-    console.log(btn.innerHTML = "Clicked!<br>");
-})
+// btn.addEventListener('click', (e)=>{
+//     e.preventDefault();
+//     console.log(btn.innerHTML = "Clicked!<br>");
+// })
 
-btn.addEventListener('mouseover', (e)=>{
-    //e.preventDefault();
-    console.log(btn.innerHTML = "Moused over!<br>");
-})
+// btn.addEventListener('mouseover', (e)=>{
+//     //e.preventDefault();
+//     console.log(btn.innerHTML = "Moused over!<br>");
+// })
 
-btn.addEventListener('mouseout', (e)=>{
-    e.preventDefault();
-    console.log(btn.innerHTML = "Moused out!<br>");
-})
+// btn.addEventListener('mouseout', (e)=>{
+//     e.preventDefault();
+//     console.log(btn.innerHTML = "Moused out!<br>");
+// })
 
 
 //_____  ____  Task 2
@@ -45,8 +45,10 @@ function onSubmit(e) {
       msg.innerHTML = 'Please enter all fields';
 
     } else {
-        console.log(nameInput.value)
-        console.log(emailInput.value)
+        localStorage.setItem(nameInput.value,emailInput.value);
+        console.log("value update at local storage");
+        // console.log(nameInput.value)
+        // console.log(emailInput.value)
     }
 };
 
