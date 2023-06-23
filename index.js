@@ -38,7 +38,6 @@ const msg = document.querySelector('.msg');
 
 
 var ItemList=document.getElementById('userDetail');
-//ItemList.addEventListener('click', removeItem);
 
 myForm.addEventListener('submit', onSubmit);
 
@@ -87,14 +86,33 @@ function onSubmit(e) {
         deleteBtn.className ='delete';
         deleteBtn.style='float:right';
         deleteBtn.appendChild(document.createTextNode('delete'));
-        //console.log(deleteBtn);
 
-         deleteBtn.onclick=()=>{
+        deleteBtn.onclick=()=>{
             localStorage.removeItem(obj.email);
             parElem.removeChild(childElem);
         }
+        childElem.appendChild(deleteBtn);    //add delete button Li
 
-        childElem.appendChild(deleteBtn);               //add delete button Li
+        //create Edit button to add in li
+        
+        var editBtn=document.createElement('button');
+        editBtn.className='edit';
+        editBtn.style='float:right';
+        
+        editBtn.appendChild(document.createTextNode('edit'));
+        
+        editBtn.onclick =()=>{
+            //delete old details
+            localStorage.removeItem(obj.email);
+            parElem.removeChild(childElem);
+
+            //add new details in input to edit
+            document.getElementById("name").value = obj.name;
+            document.getElementById("email").value = obj.email;
+        }
+        childElem.appendChild(editBtn);     //add edit button to child
+
+
         parElem.appendChild(childElem);
 
         console.log(parElem);
@@ -104,16 +122,4 @@ function onSubmit(e) {
         //console.log(obj.name,obj.email);
     }
 };
-
-
-
-// function removeItem(e){
-//     console.log("delete item");
-//     // if(e.target.classList.contains('delete')){
-//     //    if(confirm('Are You Sure?')){
-//     //      var li = e.target.parentElement;
-//     //      ItemList.removeChild(li);
-//     //    }
-//     //  }
-// };
 
