@@ -36,6 +36,10 @@ const nameInput = document.querySelector('#name');
 const emailInput = document.querySelector('#email');
 const msg = document.querySelector('.msg');
 
+
+var ItemList=document.getElementById('userDetail');
+//ItemList.addEventListener('click', removeItem);
+
 myForm.addEventListener('submit', onSubmit);
 
 function onSubmit(e) {
@@ -52,7 +56,7 @@ function onSubmit(e) {
         };
         
         localStorage.setItem(myObj.email,JSON.stringify(myObj));
-        //showUser(myObj);
+        showUser(myObj);
        
     }  
 
@@ -72,11 +76,44 @@ function onSubmit(e) {
     //}
 
     function showUser(obj){
-        const parElem=document.getElementsByClassName('items');
+        const parElem=document.getElementById('userDetail');
         const childElem=document.createElement('li');
+        childElem.className='item';
 
-        childElem.textContent=obj.name +" "+obj.email;
-        console.log(childElem);
+        childElem.textContent=obj.name +" "+obj.email;  //add text to Li
+
+        //create Delete Button to add in li
+        var deleteBtn = document.createElement('button');
+        deleteBtn.className ='delete';
+        deleteBtn.style='float:right';
+        deleteBtn.appendChild(document.createTextNode('delete'));
+        //console.log(deleteBtn);
+
+         deleteBtn.onclick=()=>{
+            localStorage.removeItem(obj.email);
+            parElem.removeChild(childElem);
+        }
+
+        childElem.appendChild(deleteBtn);               //add delete button Li
+        parElem.appendChild(childElem);
+
+        console.log(parElem);
+        console.log(ItemList.childElementCount);
+        // childElem.textContent=obj.name +" "+obj.email;
+        // console.log(childElem);
+        //console.log(obj.name,obj.email);
     }
 };
+
+
+
+// function removeItem(e){
+//     console.log("delete item");
+//     // if(e.target.classList.contains('delete')){
+//     //    if(confirm('Are You Sure?')){
+//     //      var li = e.target.parentElement;
+//     //      ItemList.removeChild(li);
+//     //    }
+//     //  }
+// };
 
